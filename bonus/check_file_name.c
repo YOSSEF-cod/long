@@ -6,7 +6,7 @@
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 10:50:03 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/18 12:25:59 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/18 15:50:51 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	check_file_name(char *file_name)
 {
 	if (!file_name || !check_filename_ber(file_name, ".ber"))
 	{
-		ft_putstr_fd("\nErroe\n:file name is incorrect!\n", 2);
-		exit(EXIT_FAILURE);//exit(EXIT_SUCCESS)
+		ft_putstr_fd("\nErroe:\nfile name is incorrect!\n", 2);
+		exit(EXIT_FAILURE); //exit(EXIT_SUCCESS)
 	}
 }

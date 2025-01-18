@@ -6,27 +6,91 @@
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 12:27:46 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/18 14:48:01 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/18 17:11:49 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-int	count_line(int fd)
+int	is_rectangular(char **map, int rows)
 {
-	int		count_line;
-	char	*line;
+	int i;
+	int columns;
+	int check;
 
-	count_line = 0;
-	line = get_next_line(fd);
-	while (line)
+	i = 0;
+	check = -1;
+	while (i < rows)
 	{
-		count_line++;
-		free(line);
-		line = get_next_line(fd);
+		columns = 0;
+		while (map[i][columns] != '\n' && map[i][columns])
+			columns++;
+		if (map[i][columns] == '\n')
+			columns--;
+		if (check == -1)
+			check = columns;
+		if (check != columns)
+			return (0);
+		i++;
 	}
-	close(fd);
-	return (count_line);
+	return (1);
+}
+
+int	check_bounderies(char **map, int rows, int columns)
+{
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+	while (y < columns)
+	{
+		if (map[0][y] != '1' || map[rows - 1][y] != '1')
+			return (0);
+		y++;
+	}
+	while (x < rows)
+	{
+		if (map[x][0] != '1' || map[x][columns - 1] != '1')
+			return (write(1,"\nhere",6), 0);
+		x++;
+	}
+	return (1);
+}
+
+int	check_valid_characters(char **map, int rows,int columns)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < rows)
+	{
+		y = 0;
+		while (y < columns)
+		{
+			if (map[x][y] != '1' && map[x][y] != '0' && map[x][y] != 'E' && map[x][y] != 'P' && map[x][y] != 'C')
+				return (0);
+			y++;
+		}
+		x++;
+	}
+	return (1);
+}
+
+int	validate_map(t_maps *t_map)
+{
+	if (!is_rectangular(t_map->cpy_map, t_map->rows))
+		return (ft_putstr_fd("\nError :\n The map is not rectangular.\n", 2), 0);
+	if (!check_bounderies(t_map->cpy_map , t_map->rows, t_map->length_of_line))
+		return (ft_putstr_fd("\nError : \n The map is not enclosed by walls.\n", 2), 0);
+	if (!check_valid_characters(t_map->cpy_map, t_map->rows, t_map->length_of_line))
+		return (ft_putstr_fd("\nError :\n The map contains invalid characters.\n", 2), 0);
+	if (!check_if_one_player_exit_collectible(t_map->cpy_map, t_map->rows, t_map->length_of_line))
+		return (ft_putstr_fd("\nError :\n The map must contain at least one start ('P') and one exit ('E') or not collectible ('C').\n", 2), 0);
+	if (!check_if_close_plyer(t_map))
+		return (ft_putstr_fd("\nError :\n Some coins or the exit door are not reachable\n", 2), 0);
+	return (1);
 }
 
 int	check_valid_maps(char *file, t_maps *t_map)
@@ -38,18 +102,19 @@ int	check_valid_maps(char *file, t_maps *t_map)
 	if (t_map->rows == 0)
 		return (close(t_map->fd),
 			ft_putstr_fd("Error:\nthis file is empty!\n", 2), 0);
-	printf("\n%d\n", t_map->rows);
-	// t_map->fd = open(file, O_RDONLY);// open file
-	// t_map->map = full_map(t_map->fd, t_map->rows);
-	// t_map->fd = open(file, O_RDONLY);// open file  and cpy map 
-	// t_map->cpy_map = full_map(t_map->fd, t_map->rows);
-	// if (!t_map->map || !t_map->cpy_map)
-	// 	return (ft_putstr_fd("Error:\n Failed to load map!\n", 2), 0);
-	// t_map->length_of_line = calcul_length_of_line(t_map->map) - 1;
-	// if (!validate_map(t_map))// ching in map in cpyma
-	// 	return (ft_putstr_fd("\nThe map is invalid!\n", 2), 
-	// 	ft_free(t_maps->cpy_map, t_maps->rows), 
-	// 	ft_free(t_maps->map, t_maps->rows), 0);//// this finctoin for tcheck all valid
-	// ft_free(t_map->cpy_map, t_map->rows);
+	t_map->fd = open(file, O_RDONLY);
+	t_map->map = full_map(t_map->fd, t_map->rows);
+	t_map->fd = open(file, O_RDONLY);
+	t_map->cpy_map = full_map(t_map->fd, t_map->rows);
+	if (!t_map->map || !t_map->cpy_map)
+		return (ft_putstr_fd("Error:\n Failed to load map!\n", 2), 0);
+	t_map->length_of_line = calcul_length_of_line(t_map->map) - 1;
+	if (!validate_map(t_map))// ching in map in cpyma
+	{
+		ft_free_map(t_map->cpy_map, t_map->rows);
+		ft_free_map(t_map->map, t_map->rows);
+		return (ft_putstr_fd("\nThe map is invalid!\n", 2),0);//// this finctoin for tcheck all valid
+	}
+	ft_free_map(t_map->cpy_map, t_map->rows);
 	return (1);
 }

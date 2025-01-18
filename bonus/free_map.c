@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   full_maps.c                                        :+:      :+:    :+:   */
+/*   free_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/18 12:29:29 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/18 15:16:39 by ybounite         ###   ########.fr       */
+/*   Created: 2025/01/18 15:08:44 by ybounite          #+#    #+#             */
+/*   Updated: 2025/01/18 15:50:21 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-char	**full_map(int fd, int rows)
+void	ft_free_map(char **map, int rows)
 {
-	char	*line;
-	char	**str;
-	int		i;
+	int	i;
 
 	i = 0;
-	str = malloc((rows + 1) * sizeof(char *));
-	if (!str)
-		return NULL;
-	line = get_next_line(fd);
-	while (line)
+	while (i < rows)
 	{
-		str[i] = line;
-		line = get_next_line(fd);
+		free(map[i]);
 		i++;
 	}
-	str[i] = NULL;
-	close(fd);
-	return (str);
+	free(map);
+}
+
+void	print_map(char **map, int length)
+{
+	int i = 0;
+	printf("===============%d===========\n",length);
+	while (i < length)
+	{
+		ft_putstr_fd(map[i], 1);
+		i++;
+	}
 }
