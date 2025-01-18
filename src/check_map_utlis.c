@@ -6,11 +6,11 @@
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 15:22:03 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/18 19:05:59 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/18 21:00:20 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
 int	calcul_length_of_line(char **map)
 {

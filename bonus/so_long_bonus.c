@@ -6,12 +6,11 @@
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 10:17:44 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/18 17:14:47 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/18 21:29:39 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
-
 
 int	main(int ac, char **av)
 {
@@ -23,7 +22,7 @@ int	main(int ac, char **av)
 	check_file_name(av[1]);
 	if (!check_valid_maps(av[1], &t_map))
 		return (ft_putstr_fd("\nFix the Error\n", 2), 1);
+	initi_structer_window(t_window *win, t_maps *t_map);
+	printf("vslid");
 	ft_free_map(t_map.map, t_map.rows);
-	// ft_free_map(t_map.cpy_map, t_map.rows);
 }
-

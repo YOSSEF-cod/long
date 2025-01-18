@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_bonus.h                                    :+:      :+:    :+:   */
+/*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 10:34:07 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/18 21:31:01 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/18 20:59:41 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_BONUS_H
-# define SO_LONG_BONUS_H
+#ifndef SO_LONG_H
+# define SO_LONG_H
 
 # include "../libft/libft.h"
 # include "get_next_line.h"
@@ -49,61 +49,6 @@ typedef struct s_map
 	char	**map;
 }	t_maps;
 
-typedef struct s_animation_player
-{
-	void	*plyer_front[3];
-	void	*plyer_back[3];
-	void	*plyer_right[3];
-	void	*plyer_left[3];
-	int		current_frame;    // Current animation frame
-	int		direction;
-	int 	animation_speed;
-	int		counter_player;
-	int		is_moving;
-	int 	not_move;
-}	t_anim_plyr;
-
-typedef struct s_imag
-{
-	void	*imag_wall;
-	void	*imag_floor;
-	void	*imag_lives;
-	void	*imag_pack;
-	void	*imag_coin[9];
-	void	*imag_exit[9];
-	
-}	t_imags;
-
-typedef struct	s_data_window
-{
-	void	*mlx;
-	void	*mlx_win;// put window
-	// void	*imag_wall;
-	// void	*imag_coin[9];
-	// void	*imag_floor;
-	// void	*imag_exit[9];
-	// void	*imag_lives;
-	// void	*imag_pack;
-	int 	img_w;
-	int 	img_h;
-	int		player_x;
-	int		player_y;
-	int		exit_x;
-	int 	exit_y;
-	int		collected_coins;
-	int		total_coins;
-	int		player_coins;
-	t_maps	*t_map;
-	t_imags t_imag;
-	// t_anim_plyr	*t_plyer;//
-	int		lives;
-	int		moves;
-	int		timer_player;
-	int		animation_frame;
-	int		coin_frame;
-	int		counter_coins;
-}	t_window;
-
 typedef struct s_check_hase_characters
 {
 	int	has_player;
@@ -114,9 +59,7 @@ typedef struct s_check_hase_characters
 }	t_check_hase_charc;
 // init structer
 void	initi_structer_map(t_maps *t_maps);
-void	initi_struct_image(t_imags *t_imag);
 void	initi_structer_check_hase_characters(t_check_hase_charc *data_caracter);
-void	initi_structer_window(t_window *win, t_maps *t_map);
 // chech_file_name
 void	check_file_name(char *file_name);
 int		check_filename_ber(char *file_name, char *str);
@@ -137,8 +80,6 @@ char	**full_map(int fd, int rows);
 int		check_if_close_plyer(t_maps *d_map);
 void	player_position(t_maps *d_map);
 void	flood_fill(t_maps *maps, int x, int y);
-// initailization enverament 
-void	initialization_enverment(t_window *win, t_maps t_map);
 // free map gg
 void	ft_free_map(char **map, int rows);
 // void 	print_map(char **map, int length);

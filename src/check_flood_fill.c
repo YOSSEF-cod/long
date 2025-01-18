@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   chech_flood_fill.c                                 :+:      :+:    :+:   */
+/*   check_flood_fill.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 16:31:06 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/18 16:33:15 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/18 21:00:23 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
-void	flood_fill(char **maps, int x, int y, int rows, int length_of_line)
+void	flood_fill(t_maps *maps, int x, int y)
 {
-	if (x < 0 || x >= rows || y < 0 || y >= length_of_line || maps[x][y] == '1' || maps[x][y] == 'F')
+	if (x < 0 || x >= maps->rows || y < 0 || y >= maps->length_of_line
+		|| maps->cpy_map[x][y] == '1' || maps->cpy_map[x][y] == 'F')
 		return ;
-	maps[x][y] = 'F';
-	flood_fill(maps, x + 1, y, rows, length_of_line);
-	flood_fill(maps, x - 1, y, rows, length_of_line);
-	flood_fill(maps, x, y + 1, rows, length_of_line);
-	flood_fill(maps, x, y - 1, rows, length_of_line);
+	maps->cpy_map[x][y] = 'F';
+	flood_fill(maps, x + 1, y);
+	flood_fill(maps, x - 1, y);
+	flood_fill(maps, x, y + 1);
+	flood_fill(maps, x, y - 1);
 }
 
-void	Player_Position(t_maps *d_map)
+void	player_position(t_maps *d_map)
 {
 	int	x;
 	int	y;
@@ -56,9 +57,8 @@ int	check_if_close_plyer(t_maps *d_map)
 	int	y;
 
 	x = 0;
-	Player_Position(d_map);
-	flood_fill(d_map->cpy_map, d_map->player_x, d_map->player_y,
-		d_map->rows, d_map->length_of_line);
+	player_position(d_map);
+	flood_fill(d_map, d_map->player_x, d_map->player_y);
 	while (x < d_map->rows)
 	{
 		y = 0;

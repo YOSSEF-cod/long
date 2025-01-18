@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_map.c                                         :+:      :+:    :+:   */
+/*   full_maps.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/18 15:08:44 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/18 18:50:18 by ybounite         ###   ########.fr       */
+/*   Created: 2025/01/18 12:29:29 by ybounite          #+#    #+#             */
+/*   Updated: 2025/01/18 21:00:09 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
-void	ft_free_map(char **map, int rows)
+char	**full_map(int fd, int rows)
 {
-	int	i;
+	char	*line;
+	char	**str;
+	int		i;
 
 	i = 0;
-	while (i < rows)
+	str = malloc((rows + 1) * sizeof(char *));
+	if (!str)
+		return (NULL);
+	line = get_next_line(fd);
+	while (line)
 	{
-		free(map[i]);
+		str[i] = line;
+		line = get_next_line(fd);
 		i++;
 	}
-	free(map);
+	str[i] = NULL;
+	close(fd);
+	return (str);
 }

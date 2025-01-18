@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_map.c                                         :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/18 15:08:44 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/18 18:50:18 by ybounite         ###   ########.fr       */
+/*   Created: 2024/11/29 09:47:23 by ybounite          #+#    #+#             */
+/*   Updated: 2025/01/18 12:24:53 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-void	ft_free_map(char **map, int rows)
-{
-	int	i;
+# define BUFFER_SIZE 1
 
-	i = 0;
-	while (i < rows)
-	{
-		free(map[i]);
-		i++;
-	}
-	free(map);
-}
+# include "../libft/libft.h"
+# include <stdlib.h>
+# include <stdio.h>
+# include <fcntl.h>
+# include <unistd.h>
+
+char	*get_next_line(int fd);
+
+#endif

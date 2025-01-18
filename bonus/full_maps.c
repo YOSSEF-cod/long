@@ -6,7 +6,7 @@
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 12:29:29 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/18 15:16:39 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/18 18:50:34 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	**full_map(int fd, int rows)
 	i = 0;
 	str = malloc((rows + 1) * sizeof(char *));
 	if (!str)
-		return NULL;
+		return (NULL);
 	line = get_next_line(fd);
 	while (line)
 	{
