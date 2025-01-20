@@ -9,5 +9,24 @@
 /*   Updated: 2025/01/18 13:33:22 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
  
+#include "so_long_bonus.h"
+
+int	calcu_how_many_coins(t_maps *t_map)
+{
+	int (x), (y), (total_coins);
+	x = 0;
+	total_coins = 0;
+	while (t_map->map[x])
+	{
+		y = 0;
+		while (t_map->map[x][y])
+		{
+			if (t_map->map[x][y] == 'C')
+				total_coins++;
+			y++;
+		}
+		x++;
+	}
+	return (total_coins);
+}

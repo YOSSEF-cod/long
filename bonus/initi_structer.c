@@ -6,7 +6,7 @@
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 10:42:33 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/19 18:36:49 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/20 15:43:11 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,26 @@ void	initi_structer_map(t_maps *t_map)
 	t_map->map = NULL;
 	t_map->cpy_map = NULL;
 }
-
+void	initi_struct_image_plyer(t_player *t_plyer)
+{
+	t_plyer->animation_speed = 5;
+	t_plyer->current_frame = 0;
+	t_plyer->direction = 0;
+	t_plyer->is_moving = 0;
+	t_plyer->counter_player = 0;
+	t_plyer->plyer_back[0] = NULL;
+	t_plyer->plyer_back[1] = NULL;
+	t_plyer->plyer_back[2] = NULL;
+	t_plyer->plyer_left[0] = NULL;
+	t_plyer->plyer_left[1] = NULL;
+	t_plyer->plyer_left[2] = NULL;
+	t_plyer->plyer_front[0] = NULL;
+	t_plyer->plyer_front[1] = NULL;
+	t_plyer->plyer_front[2] = NULL;
+	t_plyer->plyer_right[0] = NULL;
+	t_plyer->plyer_right[1] = NULL;
+	t_plyer->plyer_right[2] = NULL;
+}
 void	initi_structer_check_hase_characters(t_check_hase_charc *data_caracter)
 {
 	data_caracter->collectible = 0;
@@ -61,19 +80,42 @@ void	initi_struct_image(t_imags *t_imag)
 	t_imag->imag_exit[7] = NULL;
 	t_imag->imag_exit[8] = NULL;
 }
+
 void	initi_structer_window(t_window *win, t_maps *d_map)
 {
-	// anim_plyer *player = malloc(sizeof(anim_plyer));
-	t_imags *t_imag = malloc(sizeof(t_imags));
-	if (!t_imag)
+	t_player *player = malloc(sizeof(t_player));
+	if (!player)
 	{
 		perror("\nError: Memory allocation failed\n");
+		ft_free_map(d_map->map, d_map->rows);
 		exit(EXIT_FAILURE);
 	}
-	// initi_struct_image_plyer(player);
+	initi_struct_image_plyer(player);
 	// initi_struct_image_coin(win);
 	// initi_structer_image(win);
-	initi_struct_image(t_imag);
+	win->imag_coin[0] = NULL;
+	win->imag_coin[1] = NULL;
+	win->imag_coin[2] = NULL;
+	win->imag_coin[3] = NULL;
+	win->imag_coin[4] = NULL;
+	win->imag_coin[5] = NULL;
+	win->imag_coin[6] = NULL;
+	win->imag_coin[7] = NULL;
+	win->imag_coin[8] = NULL;
+	win->imag_floor = NULL;
+	win->imag_lives = NULL;
+	win->imag_wall = NULL;
+	win->imag_pack = NULL;
+	win->imag_exit[0] = NULL;
+	win->imag_exit[1] = NULL;
+	win->imag_exit[2] = NULL;
+	win->imag_exit[3] = NULL;
+	win->imag_exit[4] = NULL;
+	win->imag_exit[5] = NULL;
+	win->imag_exit[6] = NULL;
+	win->imag_exit[7] = NULL;
+	win->imag_exit[8] = NULL;
+	// initi_struct_image(t_imag);
 	win->mlx_win = NULL;
 	win->mlx = NULL;
 	win->img_h = 0;
@@ -91,6 +133,5 @@ void	initi_structer_window(t_window *win, t_maps *d_map)
 	win->timer_player = 0; //
 	win->animation_frame = 0;
 	win->coin_frame = 0;
-	win->t_imag = t_imag;
-	// win->t_plyer = player;
+	win->t_plyer = player;
 }

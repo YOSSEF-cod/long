@@ -6,7 +6,7 @@
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 10:34:07 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/19 18:44:45 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/20 15:44:26 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ typedef struct s_animation_player
 	void	*plyer_back[3];
 	void	*plyer_right[3];
 	void	*plyer_left[3];
-	int		current_frame;    // Current animation frame
+	int		current_frame;
 	int		direction;
-	int 	animation_speed;
+	int		animation_speed;
 	int		counter_player;
 	int		is_moving;
-	int 	not_move;
-}	t_anim_plyr;
+	int		not_move;
+}	t_player;
 
 typedef struct s_imag
 {
@@ -71,31 +71,30 @@ typedef struct s_imag
 	void	*imag_pack;
 	void	*imag_coin[9];
 	void	*imag_exit[9];
-	
 }	t_imags;
 
-typedef struct	s_data_window
+typedef struct s_data_window
 {
 	void	*mlx;
 	void	*mlx_win;// put window
-	// void	*imag_wall;
-	// void	*imag_coin[9];
-	// void	*imag_floor;
-	// void	*imag_exit[9];
-	// void	*imag_lives;
-	// void	*imag_pack;
-	int 	img_w;
-	int 	img_h;
+	void	*imag_wall;
+	void	*imag_coin[8];
+	void	*imag_floor;
+	void	*imag_exit[9];
+	void	*imag_lives;
+	void	*imag_pack;
+	int		img_w;
+	int		img_h;
 	int		player_x;
 	int		player_y;
 	int		exit_x;
-	int 	exit_y;
+	int		exit_y;
 	int		collected_coins;
 	int		total_coins;
 	int		player_coins;
 	t_maps	*t_map;
-	t_imags *t_imag;
-	// t_anim_plyr	*t_plyer;//
+	// t_imags *t_imag;
+	t_player	*t_plyer;
 	int		lives;
 	int		moves;
 	int		timer_player;
@@ -141,8 +140,24 @@ void	flood_fill(t_maps *maps, int x, int y);
 void	initialization_enverment(t_window *win, t_maps t_map);
 // texture loder
 void	texture_loader(t_window *win, t_maps *t_map);
-// free map gg
+int		texture_loader_exit(t_window *win);
+int		texture_loader_coins(t_window *win);
+int		texture_loader_plyer(t_window *win);
+// push imag
+void	push_image_to_window(t_window *win, t_maps t_map);
+// free map 
 void	ft_free_map(char **map, int rows);
 // void 	print_map(char **map, int length);
+// so_utlis.c
+int		calcu_how_many_coins(t_maps *t_map);
+// control_key_press
+int		control_key_(int keycode, t_window *window);
+// handle_key_press_events
+void	check_for_coins_exit(t_window *window);
+void	init_key_word(t_window *win, char c);
+void	handle_key_press_events(int keycode, t_window *win);
+void	handle_key_press_events_not_exit(int keycode, t_window *win);
+// closw window
+int		close_window(t_window *win);
 
 #endif

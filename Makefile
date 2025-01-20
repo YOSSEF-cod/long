@@ -1,6 +1,6 @@
 NAME = so_long
 CC = cc
-FLAGS =  -Wall -Wextra -Werror -g3 -fsanitize=address
+FLAGS =  -Wall -Wextra -Werror #-g3 -fsanitize=address
 LIBS = -lmlx -lXext -lX11 -lm -lbsd
 
 # Path to the libft static library
@@ -10,7 +10,8 @@ LIBFT = $(LIBFT_DIR)/libft.a
 # Source files (from the bonus directory and root directory)
 SIRC = bonus/get_next_line.c bonus/initi_structer.c bonus/so_long_bonus.c bonus/so_utlis.c \
 	    bonus/check_file_name.c bonus/full_maps.c bonus/check_maps.c bonus/check_map_utlis.c \
-		bonus/check_flood_fill.c bonus/initialization_enverment.c bonus/texture_loader.c  bonus/free_map.c
+		bonus/check_flood_fill.c bonus/initialization_enverment.c bonus/texture_loader.c \
+		bonus/handle_key_press_events.c bonus/control_key_press.c bonus/close_window.c bonus/free_map.c 
 OBJS = $(SIRC:.c=.o)
 
 # Link with libft.a

@@ -26,6 +26,7 @@ void	initi_structer_map(t_maps *t_map)
 	t_map->map = NULL;
 	t_map->cpy_map = NULL;
 }
+
 void	initi_structer_check_hase_characters(t_check_hase_charc *data_caracter)
 {
 	data_caracter->collectible = 0;

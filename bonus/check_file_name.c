@@ -34,6 +34,7 @@ void	check_file_name(char *file_name)
 	if (!file_name || !check_filename_ber(file_name, ".ber"))
 	{
 		ft_putstr_fd("\nErroe:\nfile name is incorrect!\n", 2);
-		exit(EXIT_FAILURE); //exit(EXIT_SUCCESS)
+		exit(EXIT_FAILURE);
 	}
 }
+/* //exit(EXIT_SUCCESS)*/
