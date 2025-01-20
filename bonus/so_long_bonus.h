@@ -6,7 +6,7 @@
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 10:34:07 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/18 21:31:01 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/19 18:44:45 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ typedef struct	s_data_window
 	int		total_coins;
 	int		player_coins;
 	t_maps	*t_map;
-	t_imags t_imag;
+	t_imags *t_imag;
 	// t_anim_plyr	*t_plyer;//
 	int		lives;
 	int		moves;
@@ -139,6 +139,8 @@ void	player_position(t_maps *d_map);
 void	flood_fill(t_maps *maps, int x, int y);
 // initailization enverament 
 void	initialization_enverment(t_window *win, t_maps t_map);
+// texture loder
+void	texture_loader(t_window *win, t_maps *t_map);
 // free map gg
 void	ft_free_map(char **map, int rows);
 // void 	print_map(char **map, int length);

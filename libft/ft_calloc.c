@@ -6,12 +6,11 @@
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 19:00:53 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/18 10:23:23 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/19 16:27:06 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
 
 void	*ft_calloc(size_t count, size_t size)
 {
