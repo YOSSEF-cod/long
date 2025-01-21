@@ -6,7 +6,7 @@
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 10:34:07 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/20 15:44:26 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/21 18:24:16 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,23 @@ typedef struct s_map
 	char	**map;
 }	t_maps;
 
+typedef struct s_string_window
+{
+	char	*lives_str;
+	char	*moves_str;
+	char	*remove_nbr;
+	char	*coins_nbr;
+	char	*coins_str;
+	int		num;
+}	t_str_window;
+
 typedef struct s_animation_player
 {
 	void	*plyer_front[3];
 	void	*plyer_back[3];
 	void	*plyer_right[3];
 	void	*plyer_left[3];
-	int		current_frame;
+	int		cur_fram;// current_frame
 	int		direction;
 	int		animation_speed;
 	int		counter_player;
@@ -63,44 +73,34 @@ typedef struct s_animation_player
 	int		not_move;
 }	t_player;
 
-typedef struct s_imag
-{
-	void	*imag_wall;
-	void	*imag_floor;
-	void	*imag_lives;
-	void	*imag_pack;
-	void	*imag_coin[9];
-	void	*imag_exit[9];
-}	t_imags;
-
 typedef struct s_data_window
 {
-	void	*mlx;
-	void	*mlx_win;// put window
-	void	*imag_wall;
-	void	*imag_coin[8];
-	void	*imag_floor;
-	void	*imag_exit[9];
-	void	*imag_lives;
-	void	*imag_pack;
-	int		img_w;
-	int		img_h;
-	int		player_x;
-	int		player_y;
-	int		exit_x;
-	int		exit_y;
-	int		collected_coins;
-	int		total_coins;
-	int		player_coins;
-	t_maps	*t_map;
-	// t_imags *t_imag;
+	void		*mlx;
+	void		*mlx_win;
+	void		*imag_wall;
+	void		*imag_coin[8];
+	void		*imag_floor;
+	void		*imag_exit[9];
+	void		*imag_lives;
+	void		*imag_pack;
+	int			img_w;
+	int			img_h;
+	int			player_x;
+	int			player_y;
+	int			exit_x;
+	int			exit_y;
+	int			collected_coins;
+	int			total_coins;
+	int			player_coins;
+	t_maps		*t_map;
 	t_player	*t_plyer;
-	int		lives;
-	int		moves;
-	int		timer_player;
-	int		animation_frame;
-	int		coin_frame;
-	int		counter_coins;
+	int			lives;
+	int			moves;
+	int			timer_player;
+	int			animation_frame;
+	int			coin_frame;
+	int			counter_coins;
+	int			clos_win;
 }	t_window;
 
 typedef struct s_check_hase_characters
@@ -111,9 +111,9 @@ typedef struct s_check_hase_characters
 	int	x;
 	int	y;
 }	t_check_hase_charc;
+
 // init structer
 void	initi_structer_map(t_maps *t_maps);
-void	initi_struct_image(t_imags *t_imag);
 void	initi_structer_check_hase_characters(t_check_hase_charc *data_caracter);
 void	initi_structer_window(t_window *win, t_maps *t_map);
 // chech_file_name
@@ -138,8 +138,11 @@ void	player_position(t_maps *d_map);
 void	flood_fill(t_maps *maps, int x, int y);
 // initailization enverament 
 void	initialization_enverment(t_window *win, t_maps t_map);
+void	push_image_to_window(t_window *win, t_maps t_map);
+void	push_imag_exit(t_window *win, int x, int y);
+void	push_imag_coin(t_window *win, int x, int y);
 // texture loder
-void	texture_loader(t_window *win, t_maps *t_map);
+void	texture_loader(t_window *win);
 int		texture_loader_exit(t_window *win);
 int		texture_loader_coins(t_window *win);
 int		texture_loader_plyer(t_window *win);
@@ -157,7 +160,21 @@ void	check_for_coins_exit(t_window *window);
 void	init_key_word(t_window *win, char c);
 void	handle_key_press_events(int keycode, t_window *win);
 void	handle_key_press_events_not_exit(int keycode, t_window *win);
+//update_player_animation
+void	update_player_animation(t_window *window);
+void	draw_player(t_window *win);
+void	push_floor(t_window *window, int x, int y);
+// 
+void	render_status_panel(t_window *data);
+void	string_put_window(t_window *data, t_str_window *str);
+void	ft_free_string(t_str_window *str);
+// updat_animatoin_bonus
+int		animation_coins(t_window *window);
+int		updat_animatoin(t_window *window);
+void	update_coin_animation(t_window *win);
+void	open_door(t_window *win);
 // closw window
 int		close_window(t_window *win);
+void	print_map(char **map, int length);
 
 #endif

@@ -11,7 +11,8 @@ LIBFT = $(LIBFT_DIR)/libft.a
 SIRC = bonus/get_next_line.c bonus/initi_structer.c bonus/so_long_bonus.c bonus/so_utlis.c \
 	    bonus/check_file_name.c bonus/full_maps.c bonus/check_maps.c bonus/check_map_utlis.c \
 		bonus/check_flood_fill.c bonus/initialization_enverment.c bonus/texture_loader.c \
-		bonus/handle_key_press_events.c bonus/control_key_press.c bonus/close_window.c bonus/free_map.c 
+		bonus/handle_key_press_events.c bonus/control_key_press.c bonus/close_window.c bonus/update_player_animation.c \
+		bonus/put_string_window.c bonus/updat_animatoin_bonus.c bonus/free_map.c 
 OBJS = $(SIRC:.c=.o)
 
 # Link with libft.a

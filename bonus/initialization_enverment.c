@@ -6,11 +6,27 @@
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 21:12:23 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/19 18:41:39 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/21 18:11:28 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
+
+void	push_imag_coin(t_window *win, int x, int y)
+{
+	mlx_put_image_to_window(win->mlx, win->mlx_win,
+		win->imag_coin[0], y * 64, x * 64);
+	mlx_put_image_to_window(win->mlx, win->mlx_win,
+		win->imag_coin[1], y * 64, x * 64);
+	mlx_put_image_to_window(win->mlx, win->mlx_win,
+		win->imag_coin[2], y * 64, x * 64);
+}
+
+void	push_imag_exit(t_window *win, int x, int y)
+{
+	mlx_put_image_to_window(win->mlx, win->mlx_win,
+		win->imag_exit[0], y * 64, x * 64);
+}
 
 void	push_image_to_window(t_window *win, t_maps t_map)
 {
@@ -31,11 +47,9 @@ void	push_image_to_window(t_window *win, t_maps t_map)
 				mlx_put_image_to_window(win->mlx, win->mlx_win,
 					win->imag_floor, y * 64, x * 64);
 			else if (t_map.map[x][y] == 'E')
-				mlx_put_image_to_window(win->mlx, win->mlx_win,
-					win->imag_exit[0], y * 64, x * 64);
+				push_imag_exit(win, x, y);
 			else if (t_map.map[x][y] == 'C')
-				mlx_put_image_to_window(win->mlx, win->mlx_win,
-					win->imag_coin[0], y * 64, x * 64);
+				push_imag_coin(win, x, y);
 			y++;
 		}
 		x++;
@@ -57,7 +71,7 @@ void	initialization_enverment(t_window *win, t_maps t_map)
 		ft_putstr_fd("Error:\nFailed to create window\n", 2);
 		mlx_destroy_window(win->mlx, win->mlx_win);
 	}
-	texture_loader(win, &t_map);
+	texture_loader(win);
 	push_image_to_window(win, t_map);
 	win->total_coins = calcu_how_many_coins(&t_map);
 }
