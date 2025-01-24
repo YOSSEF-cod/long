@@ -6,11 +6,11 @@
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 18:19:20 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/24 18:36:36 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/24 21:28:14 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
 void	free_data_imag(t_window *win)
 {
@@ -36,24 +36,11 @@ void	free_data_imag(t_window *win)
 	}
 }
 
-void	free_data_imag_enemy(t_window *win)
-{
-	int (i);
-	i = 0;
-	while (i < 16)
-	{
-		if (win->imag_enemy[i])
-			mlx_destroy_image(win->mlx, win->imag_enemy[i]);
-		i++;
-	}
-}
-
 void	free_data_window(t_window *win)
 {
 	int (i);
 	i = 0;
 	free_data_imag(win);
-	free_data_imag_enemy(win);
 	while (i < 8)
 	{
 		if (win->imag_coin[i])
@@ -86,11 +73,5 @@ int	close_window(t_window *win)
 		exit(EXIT_SUCCESS);
 	else
 		exit(EXIT_FAILURE);
-	return (0);
-}
-int	close_win(t_window *win)
-{
-	win->clos_win = 1;
-	close_window(win);
 	return (0);
 }

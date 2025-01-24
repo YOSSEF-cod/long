@@ -6,11 +6,11 @@
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 18:44:21 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/24 15:36:28 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/24 21:29:29 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
 int	texture_loader_exit2(t_window *win)
 {
@@ -109,8 +109,7 @@ void	texture_loader(t_window *win)
 	if (!win->imag_wall || !win->imag_floor || !win->imag_lives
 		|| texture_loader_coins(win) || texture_loader_plyer(win)
 		|| texture_loader_plyer2(win) || texture_loader_exit(win)
-		|| texture_loader_coins_open_window(win) || texture_loader_enemy(win)
-		|| texture_loader_enemy2(win))
+		|| texture_loader_coins_open_window(win))
 	{
 		perror("Error\nloading image\n");
 		close_window(win);

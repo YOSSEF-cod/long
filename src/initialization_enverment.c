@@ -6,11 +6,11 @@
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 21:12:23 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/23 21:35:36 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/24 21:28:58 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
 void	push_imag_coin(t_window *win, int x, int y)
 {
@@ -22,23 +22,10 @@ void	push_imag_coin(t_window *win, int x, int y)
 		win->imag_coin[2], y * 64, x * 64);
 }
 
-void	push_image_window(t_window *win, int x, int y, char c)
+void	push_imag_exit(t_window *win, int x, int y)
 {
-	if (c == '1')
-		mlx_put_image_to_window(win->mlx, win->mlx_win,
-			win->imag_wall, y * 64, x * 64);
-	else if (c == 'P')
-		mlx_put_image_to_window(win->mlx, win->mlx_win,
-			win->t_plyer->plyer_front[0], y * 64, x * 64);
-	else if (c == 'X')
-		mlx_put_image_to_window(win->mlx, win->mlx_win,
-			win->imag_enemy[0], y * 64, x * 64);
-	else if (c == '0')
-		mlx_put_image_to_window(win->mlx, win->mlx_win,
-			win->imag_floor, y * 64, x * 64);
-	else if (c == 'E')
-		mlx_put_image_to_window(win->mlx, win->mlx_win,
-			win->imag_exit[0], y * 64, x * 64);
+	mlx_put_image_to_window(win->mlx, win->mlx_win,
+		win->imag_exit[0], y * 64, x * 64);
 }
 
 void	push_image_to_window(t_window *win, t_maps t_map)
@@ -51,17 +38,18 @@ void	push_image_to_window(t_window *win, t_maps t_map)
 		while (y < t_map.length_of_line)
 		{
 			if (t_map.map[x][y] == '1')
-				push_image_window(win, x, y, '1');
+				mlx_put_image_to_window(win->mlx, win->mlx_win,
+					win->imag_wall, y * 64, x * 64);
 			else if (t_map.map[x][y] == 'P')
-				push_image_window(win, x, y, 'P');
+				mlx_put_image_to_window(win->mlx, win->mlx_win,
+					win->t_plyer->plyer_front[0], y * 64, x * 64);
 			else if (t_map.map[x][y] == '0')
-				push_image_window(win, x, y, '0');
+				mlx_put_image_to_window(win->mlx, win->mlx_win,
+					win->imag_floor, y * 64, x * 64);
 			else if (t_map.map[x][y] == 'E')
-				push_image_window(win, x, y, 'E');
+				push_imag_exit(win, x, y);
 			else if (t_map.map[x][y] == 'C')
 				push_imag_coin(win, x, y);
-			else if (t_map.map[x][y] == 'X')
-				push_image_window(win, x, y, 'X');
 			y++;
 		}
 		x++;

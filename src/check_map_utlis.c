@@ -6,7 +6,7 @@
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 15:22:03 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/18 21:00:20 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/24 21:51:16 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,13 @@ int	count_line(int fd)
 	}
 	close(fd);
 	return (count_line);
+}
+
+int	is_sizelimit_maps(int rows, int clomse)
+{
+	if (rows > MAX_ROWS || clomse > MAX_COLS)
+		return (0);
+	return (1);
 }
 
 int	check_if_one_player_exit_collectible(char **map, int length, int rows)

@@ -6,11 +6,11 @@
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 15:17:58 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/24 09:12:16 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/24 21:29:02 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
 void	string_put_window(t_window *data, t_str_window *str)
 {

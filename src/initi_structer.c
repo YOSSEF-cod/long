@@ -6,32 +6,45 @@
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 10:42:33 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/18 19:02:31 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/24 21:28:53 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
 void	initi_structer_map(t_maps *t_map)
 {
-	t_map->fd = 0;
-	t_map->x = 0;
-	t_map->y = 0;
-	t_map->rows = 0;
-	t_map->length_of_line = 0;
-	t_map->exit_x = 0;
-	t_map->exit_y = 0;
-	t_map->player_x = 0;
-	t_map->player_y = 0;
-	t_map->map = NULL;
-	t_map->cpy_map = NULL;
+	ft_bzero(t_map, sizeof(t_maps));
+}
+
+void	initi_struct_image_plyer(t_player *t_plyer)
+{
+	ft_bzero(t_plyer, sizeof(t_player));
+	t_plyer->animation_speed = 5;
 }
 
 void	initi_structer_check_hase_characters(t_check_hase_charc *data_caracter)
 {
-	data_caracter->collectible = 0;
-	data_caracter->has_player = 0;
-	data_caracter->hase_exit = 0;
-	data_caracter->x = 0;
-	data_caracter->y = 0;
+	ft_bzero(data_caracter, sizeof(t_check_hase_charc));
+}
+
+void	initi_structer_window(t_window *win, t_maps *d_map)
+{
+	t_player	*player;
+
+	player = malloc(sizeof(t_player));
+	if (!player)
+	{
+		perror("\nError: Memory allocation failed\n");
+		ft_free_map(d_map->map, d_map->rows);
+		exit(EXIT_FAILURE);
+	}
+	initi_struct_image_plyer(player);
+	ft_bzero(win, sizeof(t_window));
+	win->t_plyer = player;
+	win->t_map = d_map;
+	win->player_x = d_map->player_x;
+	win->player_y = d_map->player_y;
+	win->lives = 3;
+	win->clos_win = 1;
 }

@@ -6,7 +6,7 @@
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 15:08:44 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/18 21:00:13 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/24 21:28:25 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,13 @@ void	ft_free_map(char **map, int rows)
 		i++;
 	}
 	free(map);
+}
+
+void	ft_free_string(t_str_window *str)
+{
+	free(str->lives_str);
+	free(str->moves_str);
+	free(str->remove_nbr);
+	free(str->coins_nbr);
+	free(str->coins_str);
 }

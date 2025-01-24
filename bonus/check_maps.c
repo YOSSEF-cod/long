@@ -6,7 +6,7 @@
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 12:27:46 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/18 18:50:06 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:02:17 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	check_valid_characters(char **map, int rows, int columns)
 		while (y < columns)
 		{
 			if (map[x][y] != '1' && map[x][y] != '0' && map[x][y] != 'E'
-				&& map[x][y] != 'P' && map[x][y] != 'C')
+				&& map[x][y] != 'P' && map[x][y] != 'C' && map[x][y] != 'X')
 				return (0);
 			y++;
 		}
@@ -81,13 +81,13 @@ int	check_valid_characters(char **map, int rows, int columns)
 
 int	validate_map(t_maps *t_map)
 {
-	char	*str1;
-	char	*str2;
-	char	*str3;
-
+	char (*str1), (*str2), (*str3), (*str4);
 	str1 = "\nError:\n The map must contain at least one start ('P')";
 	str2 = " and one exit ('E') or not collectible ('C').\n";
 	str3 = "\nError:\nSome coins or the exit door are not reachable\n";
+	str4 = "\nError:\n The number of rows or columns exceeds the limit\n";
+	if (!is_sizelimit_maps(t_map->rows, t_map->length_of_line))
+		return (ft_putstr_fd(str4, 2), 0);
 	if (!is_rectangular(t_map->cpy_map, t_map->rows))
 		return (ft_putstr_fd("\nError:\n The map is not rectangular.\n"
 				, 2), 0);

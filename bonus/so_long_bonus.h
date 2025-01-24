@@ -6,7 +6,7 @@
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 10:34:07 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/21 18:24:16 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/24 20:19:49 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,17 @@
 
 # include "../libft/libft.h"
 # include "get_next_line.h"
+# include "../ft_printf/ft_printf.h"
 # include <stdio.h>
 # include <mlx.h>
+# include <math.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <X11/X.h>
+
+# define TRIGGER_DISTANCE 3
+# define MAX_ROWS 16
+# define MAX_COLS 30
 
 enum	e_key_pord
 {
@@ -70,7 +76,6 @@ typedef struct s_animation_player
 	int		animation_speed;
 	int		counter_player;
 	int		is_moving;
-	int		not_move;
 }	t_player;
 
 typedef struct s_data_window
@@ -81,6 +86,7 @@ typedef struct s_data_window
 	void		*imag_coin[8];
 	void		*imag_floor;
 	void		*imag_exit[9];
+	void		*imag_enemy[16];
 	void		*imag_lives;
 	void		*imag_pack;
 	int			img_w;
@@ -99,7 +105,9 @@ typedef struct s_data_window
 	int			timer_player;
 	int			animation_frame;
 	int			coin_frame;
+	int			enemy_frame;
 	int			counter_coins;
+	int			counter_enemy;
 	int			clos_win;
 }	t_window;
 
@@ -130,6 +138,7 @@ int		calcul_length_of_line(char **map);
 int		count_line(int fd);
 int		check_if_one_player_exit_collectible(char **map, int length, int rows);
 int		check_if_close_plyer(t_maps *d_map);
+int		is_sizelimit_maps(int rows, int clomse);
 // full maps 
 char	**full_map(int fd, int rows);
 // chech_flood_fill 3
@@ -139,19 +148,26 @@ void	flood_fill(t_maps *maps, int x, int y);
 // initailization enverament 
 void	initialization_enverment(t_window *win, t_maps t_map);
 void	push_image_to_window(t_window *win, t_maps t_map);
-void	push_imag_exit(t_window *win, int x, int y);
+void	push_image_window(t_window *win, int x, int y, char c);
 void	push_imag_coin(t_window *win, int x, int y);
 // texture loder
+int		texture_loader_coins_open_window(t_window *win);
 void	texture_loader(t_window *win);
 int		texture_loader_exit(t_window *win);
+int		texture_loader_exit2(t_window *win);
 int		texture_loader_coins(t_window *win);
+// texture_loader_plyer2
+int		texture_loader_plyer2(t_window *win);
 int		texture_loader_plyer(t_window *win);
+int		texture_loader_enemy(t_window *win);
+int		texture_loader_enemy2(t_window *win);
 // push imag
-void	push_image_to_window(t_window *win, t_maps t_map);
+// void	push_image_to_window(t_window *win, t_maps t_map);
 // free map 
 void	ft_free_map(char **map, int rows);
 // void 	print_map(char **map, int length);
 // so_utlis.c
+void	open_door(t_window *win);
 int		calcu_how_many_coins(t_maps *t_map);
 // control_key_press
 int		control_key_(int keycode, t_window *window);
@@ -169,12 +185,15 @@ void	render_status_panel(t_window *data);
 void	string_put_window(t_window *data, t_str_window *str);
 void	ft_free_string(t_str_window *str);
 // updat_animatoin_bonus
+int		animation_enemy(t_window *window);
 int		animation_coins(t_window *window);
 int		updat_animatoin(t_window *window);
 void	update_coin_animation(t_window *win);
-void	open_door(t_window *win);
+void	updat_enemy_nimatoin(t_window *win);
 // closw window
 int		close_window(t_window *win);
-void	print_map(char **map, int length);
-
+void	free_data_imag_enemy(t_window *win);
+void	free_data_window(t_window *win);
+void	free_data_imag(t_window *win);
+int		close_win(t_window *win);
 #endif

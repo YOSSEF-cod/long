@@ -6,11 +6,11 @@
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 09:47:04 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/18 20:59:58 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/18 11:37:25 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next.h"
+#include "get_next_line.h"
 
 static char	*ft_strcher(char *s, int c)
 {

@@ -6,7 +6,7 @@
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 16:31:06 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/18 18:48:12 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:15:10 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 void	flood_fill(t_maps *maps, int x, int y)
 {
 	if (x < 0 || x >= maps->rows || y < 0 || y >= maps->length_of_line
-		|| maps->cpy_map[x][y] == '1' || maps->cpy_map[x][y] == 'F')
+		|| maps->cpy_map[x][y] == '1' || maps->cpy_map[x][y] == 'F'
+		|| maps->cpy_map[x][y] == 'X')
 		return ;
 	maps->cpy_map[x][y] = 'F';
 	flood_fill(maps, x + 1, y);
