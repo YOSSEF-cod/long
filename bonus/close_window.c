@@ -6,7 +6,7 @@
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 18:19:20 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/24 18:36:36 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/25 10:44:54 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int	close_window(t_window *win)
 		exit(EXIT_FAILURE);
 	return (0);
 }
+
 int	close_win(t_window *win)
 {
 	win->clos_win = 1;

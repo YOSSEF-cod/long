@@ -6,7 +6,7 @@
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 10:34:07 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/24 20:19:49 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/25 11:01:36 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct s_animation_player
 	void	*plyer_back[3];
 	void	*plyer_right[3];
 	void	*plyer_left[3];
-	int		cur_fram;// current_frame
+	int		cur_fram;
 	int		direction;
 	int		animation_speed;
 	int		counter_player;
@@ -122,6 +122,7 @@ typedef struct s_check_hase_characters
 
 // init structer
 void	initi_structer_map(t_maps *t_maps);
+void	initi_struct_image_plyer(t_player *t_plyer);
 void	initi_structer_check_hase_characters(t_check_hase_charc *data_caracter);
 void	initi_structer_window(t_window *win, t_maps *t_map);
 // chech_file_name
@@ -137,7 +138,6 @@ int		is_rectangular(char **map, int rows);
 int		calcul_length_of_line(char **map);
 int		count_line(int fd);
 int		check_if_one_player_exit_collectible(char **map, int length, int rows);
-int		check_if_close_plyer(t_maps *d_map);
 int		is_sizelimit_maps(int rows, int clomse);
 // full maps 
 char	**full_map(int fd, int rows);
@@ -161,15 +161,15 @@ int		texture_loader_plyer2(t_window *win);
 int		texture_loader_plyer(t_window *win);
 int		texture_loader_enemy(t_window *win);
 int		texture_loader_enemy2(t_window *win);
-// push imag
-// void	push_image_to_window(t_window *win, t_maps t_map);
 // free map 
 void	ft_free_map(char **map, int rows);
-// void 	print_map(char **map, int length);
+void	ft_free_string(t_str_window *str);
 // so_utlis.c
 void	open_door(t_window *win);
 int		calcu_how_many_coins(t_maps *t_map);
 // control_key_press
+void	chech_if_finsh_game(t_window *window);
+void	control_handle_key_press(int keycode, t_window *win);
 int		control_key_(int keycode, t_window *window);
 // handle_key_press_events
 void	check_for_coins_exit(t_window *window);
@@ -180,10 +180,10 @@ void	handle_key_press_events_not_exit(int keycode, t_window *win);
 void	update_player_animation(t_window *window);
 void	draw_player(t_window *win);
 void	push_floor(t_window *window, int x, int y);
-// 
+// put_string_window
 void	render_status_panel(t_window *data);
 void	string_put_window(t_window *data, t_str_window *str);
-void	ft_free_string(t_str_window *str);
+void	enter_string(t_window *data, t_str_window *str);
 // updat_animatoin_bonus
 int		animation_enemy(t_window *window);
 int		animation_coins(t_window *window);

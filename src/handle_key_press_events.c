@@ -6,7 +6,7 @@
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 15:11:09 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/24 21:28:47 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/25 10:33:05 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	check_for_coins_exit(t_window *window)
 
 void	init_key_word(t_window *win, char c)
 {
+	ft_number_of_movements(win, c);
 	if (c == 'd')
 	{
 		win->player_y += 1;
@@ -46,6 +47,15 @@ void	init_key_word(t_window *win, char c)
 		win->player_y -= 1;
 		win->t_plyer->is_moving = 1;
 		win->t_plyer->direction = LEFT;
+	}
+}
+
+void	ft_number_of_movements(t_window *win, char c)
+{
+	if (c == 'd' || c == 's' || c == 'w' || c == 'a')
+	{
+		win->moves++;
+		ft_printf("\nnumber of movements player : %d\n", win->moves);
 	}
 }
 

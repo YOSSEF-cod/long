@@ -6,7 +6,7 @@
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 18:44:21 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/24 21:29:29 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/25 10:13:52 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,13 +103,9 @@ void	texture_loader(t_window *win)
 	win->imag_floor = mlx_xpm_file_to_image(win->mlx,
 			"./textures/floor.xpm",
 			&win->img_w, &win->img_h);
-	win->imag_lives = mlx_xpm_file_to_image(win->mlx,
-			"./textures/lives.xpm",
-			&win->img_w, &win->img_h);
-	if (!win->imag_wall || !win->imag_floor || !win->imag_lives
-		|| texture_loader_coins(win) || texture_loader_plyer(win)
-		|| texture_loader_plyer2(win) || texture_loader_exit(win)
-		|| texture_loader_coins_open_window(win))
+	if (!win->imag_wall || !win->imag_floor || texture_loader_coins(win)
+		|| texture_loader_plyer(win) || texture_loader_plyer2(win)
+		|| texture_loader_exit(win) || texture_loader_coins_open_window(win))
 	{
 		perror("Error\nloading image\n");
 		close_window(win);

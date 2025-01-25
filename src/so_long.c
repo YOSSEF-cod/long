@@ -6,7 +6,7 @@
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 10:17:44 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/23 17:42:10 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/25 09:21:22 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ int	main(int ac, char **av)
 	initi_structer_window(&win, &t_map);
 	initialization_enverment(&win, t_map);
 	mlx_hook(win.mlx_win, KeyPress, KeyPressMask, control_key_, &win);
-	// /mlx_loop_hook(win.mlx, updat_animatoin, &win);
+	mlx_hook(win.mlx_win, 17, 0, close_window, &win);
 	mlx_loop(win.mlx);
 }

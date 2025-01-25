@@ -6,7 +6,7 @@
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 18:19:20 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/24 21:28:14 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/25 10:14:03 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	free_data_imag(t_window *win)
 	i = 0;
 	if (win->imag_wall)
 		mlx_destroy_image(win->mlx, win->imag_wall);
-	if (win->imag_lives)
-		mlx_destroy_image(win->mlx, win->imag_lives);
 	if (win->imag_floor)
 		mlx_destroy_image(win->mlx, win->imag_floor);
 	while (i < 3)

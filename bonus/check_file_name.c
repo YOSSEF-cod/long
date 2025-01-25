@@ -6,7 +6,7 @@
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 10:50:03 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/21 14:55:27 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/25 10:53:35 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,3 @@ void	check_file_name(char *file_name)
 		exit(EXIT_FAILURE);
 	}
 }
-/* //exit(EXIT_SUCCESS)*/

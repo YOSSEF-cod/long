@@ -6,7 +6,7 @@
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 10:42:33 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/24 21:28:53 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/25 10:13:13 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,5 @@ void	initi_structer_window(t_window *win, t_maps *d_map)
 	win->t_map = d_map;
 	win->player_x = d_map->player_x;
 	win->player_y = d_map->player_y;
-	win->lives = 3;
 	win->clos_win = 1;
 }

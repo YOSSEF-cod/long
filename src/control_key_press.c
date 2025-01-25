@@ -6,7 +6,7 @@
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:50:30 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/24 21:28:19 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/25 10:24:52 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	control_key_(int keycode, t_window *window)
 	update_player_animation(window);
 	push_floor(window, old_position_x, old_position_y);
 	check_for_coins_exit(window);
-	render_status_panel(window);
 	chech_if_finsh_game(window);
 	return (1);
 }

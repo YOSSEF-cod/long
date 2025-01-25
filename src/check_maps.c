@@ -6,7 +6,7 @@
 /*   By: ybounite <ybounite@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 12:27:46 by ybounite          #+#    #+#             */
-/*   Updated: 2025/01/24 21:46:26 by ybounite         ###   ########.fr       */
+/*   Updated: 2025/01/25 10:45:26 by ybounite         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	check_valid_characters(char **map, int rows, int columns)
 		while (y < columns)
 		{
 			if (map[x][y] != '1' && map[x][y] != '0' && map[x][y] != 'E'
-				&& map[x][y] != 'P' && map[x][y] != 'C' && map[x][y] != 'X')
+				&& map[x][y] != 'P' && map[x][y] != 'C')
 				return (0);
 			y++;
 		}
@@ -81,7 +81,7 @@ int	check_valid_characters(char **map, int rows, int columns)
 
 int	validate_map(t_maps *t_map)
 {
-	char (*str1), (*str2), (*str3), (*str4);
+	char *(str1), *(str2), *(str3), *(str4);
 	str1 = "\nError:\n The map must contain at least one start ('P')";
 	str2 = " and one exit ('E') or not collectible ('C').\n";
 	str3 = "\nError:\nSome coins or the exit door are not reachable\n";
